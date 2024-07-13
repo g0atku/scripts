@@ -1,6 +1,6 @@
 local Blacklist = {
     [1] = '',
-    [2] = '0'
+    [2] = nil
 }
 getgenv().Blacklist = Blacklist
 
