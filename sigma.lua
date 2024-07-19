@@ -195,7 +195,9 @@ getgenv().IsFov = true
 getgenv().IsAutoDefense = false
 getgenv().IsAutoTrapping = false
 getgenv().IsAutoFinishing = false
-getgenv().SpeedBoost = (30-(17+MyPlayer:GetAttribute('RunSpeedBuff')))
+if PlaceId ~= 12467817668 then
+	getgenv().SpeedBoost = (30-(17+MyPlayer:GetAttribute('RunSpeedBuff')))
+end
 getgenv().Team = 1
 getgenv().Position = 'Forward'
 getgenv().ShootingMode = "Middle"
@@ -1760,17 +1762,19 @@ Sections.Punch:AddToggle('CanonKaiserToggle', {
 	end
 })
 
-Sections.Speed:AddSlider('SpeedBoostSlider', {
-    Text = 'SpeedBoost',
-    Default = (30-(17+MyPlayer:GetAttribute('RunSpeedBuff'))),
-    Min = 0,
-    Max = 5,
-    Rounding = 1,
-    Compact = false,
-    Callback = function(Boost)
-		getgenv().SpeedBoost = Boost
-	end
-})
+if PlaceId ~= 12467817668 then
+	Sections.Speed:AddSlider('SpeedBoostSlider', {
+		Text = 'SpeedBoost',
+		Default = (30-(17+MyPlayer:GetAttribute('RunSpeedBuff'))),
+		Min = 0,
+		Max = 5,
+		Rounding = 1,
+		Compact = false,
+		Callback = function(Boost)
+			getgenv().SpeedBoost = Boost
+		end
+	})
+end
 Sections.Speed:AddToggle('SpeedDemonToggle', {
     Text = 'SpeedDemon',
     Default = true,
