@@ -10,7 +10,7 @@ local LocalPlayer = Players.LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
 function IsTyping()
-    if (CoreGui.RobloxGui.SettingsClippingShield:WaitForChild('SettingsShield').MenuContainer.BottomButtonFrame.Visible) or (LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
+    if (CoreGui.RobloxGui.SettingsClippingShield:WaitForChild('SettingsShield').MenuContainer.BottomButtonFrame.Visible) or (LocalPlayer.PlayerGui:WaitForChild('Chat').Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
         return true
     else
         return false 
