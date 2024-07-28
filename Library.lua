@@ -1196,11 +1196,13 @@ do
         end;
 
         function KeyPicker:SetValue(Data)
-            local Key, Mode = Data[1], Data[2];
-            DisplayLabel.Text = Key;
-            KeyPicker.Value = Key;
-            ModeButtons[Mode]:Select();
-            KeyPicker:Update();
+            if not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused() then
+                local Key, Mode = Data[1], Data[2];
+                DisplayLabel.Text = Key;
+                KeyPicker.Value = Key;
+                ModeButtons[Mode]:Select();
+                KeyPicker:Update();
+            end
         end;
 
         function KeyPicker:OnClick(Callback)
@@ -1228,7 +1230,7 @@ do
         local Picking = false;
 
         PickOuter.InputBegan:Connect(function(Input)
-            if (Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame()) or LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar.CursorPosition ~= -1 then
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 Picking = true;
 
                 DisplayLabel.Text = '';
@@ -1282,7 +1284,7 @@ do
         end);
 
         Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
-            if (not Picking) then
+            if (not Picking) and (not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
 
@@ -1315,7 +1317,7 @@ do
         end))
 
         Library:GiveSignal(InputService.InputEnded:Connect(function(Input)
-            if (not Picking) then
+            if (not Picking) and (not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
                 KeyPicker:Update();
             end;
         end))
