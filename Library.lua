@@ -9,6 +9,14 @@ local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = Players.LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
+function IsTyping()
+    if (CoreGui.RobloxGui.SettingsClippingShield.SettingsShield.MenuContainer.BottomButtonFrame.Visible) or (LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
+        return true
+    else
+        return false 
+    end
+end
+
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
 local ScreenGui = Instance.new('ScreenGui');
@@ -1196,7 +1204,7 @@ do
         end;
 
         function KeyPicker:SetValue(Data)
-            if not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused() then
+            if not IsTyping() then
                 local Key, Mode = Data[1], Data[2];
                 DisplayLabel.Text = Key;
                 KeyPicker.Value = Key;
@@ -1284,7 +1292,7 @@ do
         end);
 
         Library:GiveSignal(InputService.InputBegan:Connect(function(Input)
-            if (not Picking) and (not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
+            if (not Picking) and (not IsTyping()) then
                 if KeyPicker.Mode == 'Toggle' then
                     local Key = KeyPicker.Value;
 
@@ -1317,7 +1325,7 @@ do
         end))
 
         Library:GiveSignal(InputService.InputEnded:Connect(function(Input)
-            if (not Picking) and (not LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
+            if (not Picking) and (not IsTyping()) then
                 KeyPicker:Update();
             end;
         end))
