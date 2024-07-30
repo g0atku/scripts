@@ -3,9 +3,14 @@ repeat task.wait() until game:IsLoaded()
 local repo = 'https://raw.githubusercontent.com/g0atku/scripts/main/'
 if not isfolder('VevoHub') then makefolder('VevoHub') end
 if not isfile('VevoHub/Library.lua') then appendfile('VevoHub/Library.lua', game:HttpGet(repo..'Library.lua')) end
+if not isfile('VevoHub/ThemeManager.lua') then appendfile('VevoHub/ThemeManager.lua', game:HttpGet(repo..'ThemeManager.lua')) end
+if not isfile('VevoHub/SaveManager.lua') then appendfile('VevoHub/SaveManager.lua', game:HttpGet(repo..'SaveManager.lua')) end
+
 if not VevoLoaded then
 	loadstring(readfile('VevoHub/Library.lua'))()
-	repeat task.wait() until Toggles and Options and Library
+	loadstring(readfile('VevoHub/ThemeManager.lua'))()
+	loadstring(readfile('VevoHub/SaveManager.lua'))()
+	repeat task.wait() until Toggles and Options and Library and ThemeManager and SaveManager
 	getgenv().VevoLoaded = true
 end
 
@@ -102,9 +107,18 @@ Sections.Registration:AddInput('DiscordUserIDTextbox', {
             Library:Notify('Successfully sent discord user ID, wait for finger to give you access')
             task.wait(6)
             Library:Unload()
-            getgenv().VevoLoaded = false
         else
             Library:Notify('Please enter valid discord user ID')
         end
     end
 })
+-- UI Settings
+Library:OnUnload(function()
+    Library.Unloaded = true
+	getgenv().VevoLoaded = false
+end)
+ThemeManager:SetLibrary(Library)
+ThemeManager:SetFolder('VevoHub')
+SaveManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetFolder('VevoHub')
