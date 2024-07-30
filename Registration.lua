@@ -100,6 +100,9 @@ Sections.Registration:AddInput('DiscordUserIDTextbox', {
                 })
             })
             Library:Notify('Successfully sent discord user ID, wait for finger to give you access')
+            task.wait(6)
+            Library:Unload()
+            getgenv().VevoLoaded = false
         else
             Library:Notify('Please enter valid discord user ID')
         end
