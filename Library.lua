@@ -9,8 +9,16 @@ local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = Players.LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
+function GetChat()
+    if LocalPlayer.PlayerGui:FindFirstChild('Chat') then
+        return LocalPlayer.PlayerGui:WaitForChild('Chat').Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()
+    elseif CoreGui.ExperienceChat:FindFirstChild('appLayout') then
+        return CoreGui.ExperienceChat:WaitForChild('appLayout').chatInputBar.Background.Container.TextContainer.TextBoxContainer.TextBox:IsFocused()
+    else return
+    end
+end
 function IsTyping()
-    if (CoreGui.RobloxGui.SettingsClippingShield:WaitForChild('SettingsShield').Visible) or (LocalPlayer.PlayerGui:WaitForChild('Chat').Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar:IsFocused()) then
+    if (CoreGui.RobloxGui.SettingsClippingShield:WaitForChild('SettingsShield').Visible) or GetChat() then
         return true
     else
         return false 
