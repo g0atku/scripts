@@ -1,7 +1,8 @@
 local httpService = game:GetService('HttpService')
+local version = loadstring(game:HttpGet('https://raw.githubusercontent.com/g0atku/scripts/main/version.lua'))()
 
 local SaveManager = {} do
-	SaveManager.Folder = 'VevoHub'
+	SaveManager.Folder = 'VevoHub '..version
 	SaveManager.Ignore = {}
 	SaveManager.Parser = {
 		Toggle = {
