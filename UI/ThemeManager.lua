@@ -1,5 +1,5 @@
 local httpService = game:GetService('HttpService')
-local version = loadstring(game:HttpGet('https://raw.githubusercontent.com/g0atku/scripts/main/version.lua'))()
+local version = loadstring(game:HttpGet('https://raw.githubusercontent.com/g0atku/scripts/main/Vevo/Version.lua'))()
 
 local ThemeManager = {} do
 	ThemeManager.Folder = 'VevoHub '..version
