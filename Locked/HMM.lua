@@ -1,4 +1,6 @@
-local oldNameCall = nil
+local Players = game:GetService('Players')
+local MyPlayer = Players.LocalPlayer
+local oldNameCall
 oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
     local args = {...}
     local method = getnamecallmethod()
@@ -6,11 +8,11 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         return task.wait(9e9)
     elseif self.Name == 'Emotecs' and method == 'FireServer' then
         return task.wait(9e9)
-    elseif getgenv().IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' then
+    elseif IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' then
         if args[21] then
-            args[21] = args[21] * getgenv().CurveMulti
+            args[21] = args[21] * CurveMulti
         end
-        if getgenv().M2HBE then
+        if M2HBE then
             if args[4] == true then
                 args[4] = false
             end
