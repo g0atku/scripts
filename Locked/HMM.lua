@@ -26,3 +26,4 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
     end
     return oldNameCall(self, unpack(args))
 end)
+getgenv().HMMLoaded = true
