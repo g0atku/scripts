@@ -8,6 +8,8 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         return task.wait(9e9)
     elseif self.Name == 'Emotecs' and method == 'FireServer' then
         return task.wait(9e9)
+    elseif IsAutoDribble and self.Name == 'ChestBump' and method == 'FireServer' then
+        args[2] = args[2] / 2
     elseif IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' then
         if args[21] then
             args[21] = args[21] * CurveMulti
