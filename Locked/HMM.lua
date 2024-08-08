@@ -14,16 +14,15 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         if args[21] then
             args[21] = args[21] * CurveMulti
         end
-        if M2HBE then
-            if args[5] == true then
-                args[5] = false
-            end
-            if args[12] == false then
-                args[12] = true
-            end
-            if args[13] == false then
-                args[13] = true
-            end
+    elseif M2HBE then
+        if args[5] == true then
+            args[5] = false
+        end
+        if args[12] == false then
+            args[12] = true
+        end
+        if args[13] == false then
+            args[13] = true
         end
     end
     return oldNameCall(self, unpack(args))
