@@ -5,9 +5,9 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
     local args = {...}
     local method = getnamecallmethod()
     if self == MyPlayer and method:lower() == 'kick' then
-        return task.wait(9e9)
+        return
     elseif self.Name == 'Emotecs' and method == 'FireServer' then
-        return task.wait(9e9)
+        return
     elseif IsAutoDribble and self.Name == 'ChestBump' and method == 'FireServer' then
         args[2] = args[2] / 1.5
     elseif IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' then
@@ -22,7 +22,7 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
             args[13] = true
         end
     elseif IsAutoM2 and self.Name == 'Ragdoll' and method == 'FireServer' then
-        return task.wait(9e9)
+        return
     end
     return oldNameCall(self, unpack(args))
 end)
