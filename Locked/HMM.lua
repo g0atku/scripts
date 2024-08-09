@@ -10,14 +10,14 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         return
     elseif IsAutoDribble and self.Name == 'ChestBump' and method == 'FireServer' then
         args[2] = args[2] / 1.5
-    elseif IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' then
+    elseif IsRiptideCurve and self.Name == 'shoot' and method == 'FireServer' and not checkcaller() then
         if args[21] then
             args[21] = args[21] * CurveMulti
         end
     elseif M2HBE and not checkcaller() then
         args[12] = true
         args[13] = true
-    elseif IsAutoM2 and self.Name == 'Ragdoll' and method == 'FireServer' and not checkcaller() then
+    elseif IsAntiRagdoll and self.Name == 'Ragdoll' and (args[3] or args[4]) then
         return
     end
     return oldNameCall(self, unpack(args))
