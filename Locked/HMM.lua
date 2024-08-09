@@ -15,12 +15,8 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
             args[21] = args[21] * CurveMulti
         end
     elseif M2HBE then
-        if args[12] == false then
-            args[12] = true
-        end
-        if args[13] == false then
-            args[13] = true
-        end
+        args[12] = true
+        args[13] = true
     elseif IsAutoM2 and self.Name == 'Ragdoll' and method == 'FireServer' then
         return
     end
