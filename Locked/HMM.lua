@@ -12,9 +12,6 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         if args[21] then
             args[21] = args[21] * CurveMulti
         end
-    elseif M2HBE and self.Name == 'shoot' and method == 'FireServer' and not checkcaller() then
-        args[12] = true
-        args[13] = true
     elseif GKHBE and self.Name == 'Goalie' and method == 'FireServer' and not checkcaller() then
         if args[2] == 'BlockL' or args[2] == 'BlockR' then
             game:GetService("ReplicatedStorage").GK.Goalie:FireServer(args[1],'Gagamaru',args[3],args[4],args[5],args[6])
