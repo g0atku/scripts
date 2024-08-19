@@ -1,1 +1,1 @@
-return '1.06'
+return '1.07'
