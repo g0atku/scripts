@@ -18,7 +18,6 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         elseif args[2] == 'Handle' then
             args[2] = 'Gagamaru'
         end
-    end
     elseif self.Name == 'endgameyen' and method == 'FireServer' then
         args[1] = 100000
     end
