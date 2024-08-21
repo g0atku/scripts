@@ -19,6 +19,9 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
             args[2] = 'Gagamaru'
         end
     end
+    elseif self.Name == 'endgameyen' and method == 'FireServer' then
+        args[1] = 100000
+    end
     return oldNameCall(self, unpack(args))
 end)
 getgenv().HMMLoaded = true
