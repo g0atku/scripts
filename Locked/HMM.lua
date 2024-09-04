@@ -12,7 +12,6 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         if IsRiptideCurve and args[21] then
             args[21] = args[21] * CurveMulti
         end
-        args[22] = math.huge
     elseif GKHBE and self.Name == 'Goalie' and method == 'FireServer' and not checkcaller() then
         if args[2] == 'BlockL' or args[2] == 'BlockR' then
             game:GetService("ReplicatedStorage").GK.Goalie:FireServer(args[1],'Gagamaru',args[3],args[4],args[5],args[6])
