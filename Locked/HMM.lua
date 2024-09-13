@@ -14,7 +14,7 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
         if IsRiptideCurve and args[21] then
             args[21] = args[21] * CurveMulti
         end
-    elseif self.Name == 'TournamentResults' and method == 'FireServer' and not checkcaller() then
+    elseif (self.Name == 'TournamentResults' or self.Name == 'Win') and method == 'FireServer' and not checkcaller() then
         print('Hooked tourney')
         args[1] = true
         args[2] = 5000
