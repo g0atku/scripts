@@ -9,15 +9,16 @@ oldNameCall = hookmetamethod(game, '__namecall', function(self, ...)
     elseif self.Name == 'Emotecs' and method == 'FireServer' and not checkcaller() then
         return
     elseif self.Name == 'shoot' and method == 'FireServer' and not checkcaller() then
+        args[4] = true
+        args[23] = true
         if IsRiptideCurve and args[21] then
             args[21] = args[21] * CurveMulti
         end
-    elseif GKHBE and self.Name == 'Goalie' and method == 'FireServer' and not checkcaller() then
-        if args[2] == 'BlockL' or args[2] == 'BlockR' then
-            game:GetService("ReplicatedStorage").GK.Goalie:FireServer(args[1],'Gagamaru',args[3],args[4],args[5],args[6])
-        elseif args[2] == 'Handle' then
-            args[2] = 'Gagamaru'
-        end
+    elseif self.Name == 'TournamentResults' and method == 'FireServer' and not checkcaller() then
+        print('Hooked tourney')
+        args[1] = true
+        args[2] = 5000
+        args[3] = 5000000
     end
     return oldNameCall(self, unpack(args))
 end)
