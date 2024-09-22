@@ -2446,7 +2446,6 @@ if PlaceId ~= 12276235857 then
 		NoUI = false,
 		Callback = function(Value)
 			getgenv().IsAutoM2 = Value
-			TraitStack()
 		end
 	})
 	Sections.Visual:AddDropdown('HitboxDropdown', {
