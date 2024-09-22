@@ -985,6 +985,7 @@ function CustomGKScript()
 		savehitbox.Transparency = 1
 		savehitbox.CFrame = MyHRP.CFrame * CFrame.new(0,workspace:WaitForChild('GoalHitboxes').goalhitbox1.CFrame.Y-MyHRP.CFrame.Y,0) * CFrame.Angles(0,math.rad(90),0)
 		savehitbox.Size = Vector3.new(0,17.655,42.825) * 1.5
+		savehitbox.Size = Vector3.new(14,savehitbox.Size.Y,savehitbox.Size.Z)
 		local hrpweld = Instance.new('WeldConstraint', savehitbox)
 		hrpweld.Name = 'hrpweld'
 		hrpweld.Enabled = true
@@ -1025,7 +1026,7 @@ function CustomGKScript()
 			if Value then
 				divecon = RunService.RenderStepped:Connect(function()
 					for _, ball in pairs(workspace.BallFolder:GetChildren()) do
-						if ball.Name == "Ball" then
+						if ball.Name == "Ball" and ball.AssemblyLinearVelocity.Magnitude > 0 then
 							local trajectoryPositions = calculateTrajectory(ball, segments)
 							for i = 1, #trajectoryPositions - 1 do
 								local startPos = trajectoryPositions[i]
