@@ -1049,7 +1049,7 @@ function CustomGKScript()
 											goalsencor.Material = Enum.Material.Neon
 										end
 										workspace:WaitForChild('goalsencor').CFrame = CFrame.new(rayResult.Position)
-										if rayResult.Position.Y > workspace:WaitForChild('GoalHitboxes').goalhitbox1.CFrame.Y and not fatiguecd and not isSaving then
+										if rayResult.Position.Y > workspace:WaitForChild('GoalHitboxes').goalhitbox1.CFrame.Y and not fatiguecd and not isSaving and isHoldingBall then
 											MyHum:ChangeState(Enum.HumanoidStateType.Jumping)
 										end									
 										if MyHRP.CFrame:ToObjectSpace(workspace:WaitForChild('goalsencor').CFrame).X <= -6.375 then
