@@ -80,6 +80,7 @@ getgenv().IsGKHBE = 0
 getgenv().StaminaGain = 1
 getgenv().SlideTackleMulti = 1
 getgenv().GKDiveMulti = 1
+getgenv().IsGKHBDuration = false
 getgenv().DribbleHBE = 1
 getgenv().DribbleDelay = 0.115
 getgenv().CBIntoDribbleDelay = 0.7
@@ -575,6 +576,18 @@ function CustomGKScript()
 				vel.Velocity = MyHRP.CFrame.RightVector * (130 * getgenv().GKDiveMulti)
 				vel.Parent = MyHRP
 				game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", false, false, true, false)
+				if getgenv().IsGKHBDuration then
+					task.delay(0.3, function()
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", false, false, false, false)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", false, false, false, false)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", false, false, false, false)
+						if getgenv().IsGKHBE > 0 then
+							for i = 1,getgenv().IsGKHBE do
+								game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+							end
+						end
+					end)
+				end
 				local v = 5
 				if getgenv().IsAutoCBGK then
 					task.spawn(function()
@@ -635,7 +648,19 @@ function CustomGKScript()
 			end
 			vel.Velocity = direction
 			vel.Parent = MyHRP
-			game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", isSnatch, isGagamaru, true, isClaw)
+			game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", isSnatch, false, true, isClaw)
+			if getgenv().IsGKHBDuration then
+				task.delay(0.3, function()
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", isSnatch, false, false, isClaw)
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", isSnatch, false, false, isClaw)
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", isSnatch, false, false, isClaw)
+					if getgenv().IsGKHBE > 0 then
+						for i = 1,getgenv().IsGKHBE do
+							game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+						end
+					end
+				end)
+			end
 			if getgenv().IsGKHBE > 0 then
 				for i = 1,getgenv().IsGKHBE do
 					game:GetService("ReplicatedStorage").GK.jumped:FireServer()
@@ -677,6 +702,18 @@ function CustomGKScript()
 				vel.Velocity = -MyHRP.CFrame.RightVector * (-130 * getgenv().GKDiveMulti)
 				vel.Parent = MyHRP
 				game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", false, false, true, false)
+				if getgenv().IsGKHBDuration then
+					task.delay(0.3, function()
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", false, false, false, false)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", false, false, false, false)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", false, false, false, false)
+						if getgenv().IsGKHBE > 0 then
+							for i = 1,getgenv().IsGKHBE do
+								game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+							end
+						end
+					end)
+				end
 				local v = 5
 				if getgenv().IsAutoCBGK then
 					task.spawn(function()
@@ -737,7 +774,19 @@ function CustomGKScript()
 			end
 			vel.Velocity = direction
 			vel.Parent = MyHRP
-			game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", isSnatch, isGagamaru, true, isClaw)
+			game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", isSnatch, false, true, isClaw)
+			if getgenv().IsGKHBDuration then
+				task.delay(0.3, function()
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", isSnatch, false, false, isClaw)
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockR", isSnatch, false, false, isClaw)
+					game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "BlockL", isSnatch, false, false, isClaw)
+					if getgenv().IsGKHBE > 0 then
+						for i = 1,getgenv().IsGKHBE do
+							game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+						end
+					end
+				end)
+			end
 			if getgenv().IsGKHBE > 0 then
 				for i = 1,getgenv().IsGKHBE do
 					game:GetService("ReplicatedStorage").GK.jumped:FireServer()
@@ -793,7 +842,22 @@ function CustomGKScript()
 				end
 				blockfanimation:Play()
 				MyChar.IsBlocking.Value = true
-				game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), hb, isSnatch, isGagamaru, false, isClaw)
+				game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), hb, isSnatch, false, false, isClaw)
+				if getgenv().IsGKHBDuration then
+					task.delay(0.3, function()
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'BlockL', isSnatch, false, false, isClaw)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'BlockR', isSnatch, false, false, isClaw)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'Gagamaru', isSnatch, false, false, isClaw)
+						if hb == 'Handle' then
+							game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'Handle', isSnatch, false, false, isClaw)
+						end
+						if getgenv().IsGKHBE > 0 then
+							for i = 1,getgenv().IsGKHBE do
+								game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+							end
+						end
+					end)
+				end
 				if getgenv().IsGKHBE > 0 then
 					for i = 1,getgenv().IsGKHBE do
 						game:GetService("ReplicatedStorage").GK.jumped:FireServer()
@@ -841,6 +905,18 @@ function CustomGKScript()
 				end)
 				isClaw = false
 				game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", isSnatch, isGagamaru, false, isClaw)
+				if getgenv().IsGKHBDuration then
+					task.delay(0.3, function()
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'BlockL', isSnatch, false, false, isClaw)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), 'BlockR', isSnatch, false, false, isClaw)
+						game.ReplicatedStorage:WaitForChild("GK"):WaitForChild("Goalie"):FireServer(MyHRP.CFrame.lookVector * 85 + Vector3.new(0, 80, 0), "Gagamaru", isSnatch, isGagamaru, false, isClaw)
+						if getgenv().IsGKHBE > 0 then
+							for i = 1,getgenv().IsGKHBE do
+								game:GetService("ReplicatedStorage").GK.jumped:FireServer()
+							end
+						end
+					end)
+				end
 				if getgenv().IsGKHBE > 0 then
 					for i = 1,getgenv().IsGKHBE do
 						game:GetService("ReplicatedStorage").GK.jumped:FireServer()
@@ -1082,6 +1158,14 @@ function CustomGKScript()
 		Compact = false,
 		Callback = function(Multi)
 			getgenv().IsGKHBE = Multi
+		end
+	})
+	Sections.GK:AddToggle('GKHBExtendToggle', {
+		Text = 'Extend GK HB Duration',
+		Default = false,
+		Tooltip = 'Makes GK HB last longer',
+		Callback = function(Value)
+			getgenv().IsGKHBDuration = Value
 		end
 	})
 end
